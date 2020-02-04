@@ -1,6 +1,9 @@
 import csv
 import time
 
+fileoutput = []
+
+
 #Displays the Main Menu
 def MainMenu():
     print("MAIN MENU")
@@ -34,6 +37,7 @@ def MainMenu():
 def Read():
     datafile = input("Enter the name of the data file: ")
     try:
+        
         with open(datafile, 'r') as csv_file:
             csv_reader = csv.reader(csv_file)
 
@@ -41,11 +45,16 @@ def Read():
             print("Reading", datafile ,"...")
             time.sleep(2)
             print('Number of lines read: ', row_count)
+            fileoutput.append(datafile)
+            (print)
+            MainMenu()
     except FileNotFoundError:
         print(datafile, "does not exist. Try again")
-        print()
+        (print)
         Read()
 
 MainMenu()
+
+
 
 
