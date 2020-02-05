@@ -1,5 +1,12 @@
 import csv
+import datetime
+from datetime import datetime
 import time
+from time import strptime
+import sys
+import os.path
+import copy
+
 
 fileoutput = []
 
@@ -23,6 +30,7 @@ def MainMenu():
         Read()
     elif option == "2":
         print("View Maze")
+        viewMaze()
     elif option == "3":
         print("Play maze game")
     elif option == "4":
@@ -54,6 +62,27 @@ def Read():
         Read()
 
 MainMenu()
+
+def viewMaze():
+    if 1 not in option_list or exist == False: #parameters set so that option 2 cannot run if maze is not loaded or if file does not exist to prevent the code from breaking
+        print('Please load maze first.')
+        MainMenu()
+    continue
+else:
+    print()
+    print('Option [2] View Maze')
+    print('=========================================')
+    print()
+    for i in range(len(maze_list)): #prints maze_list line by line for user to read
+        print(maze_list[i])
+ #   with open('maze1.csv','rt')as f:
+  #      data = csv.reader(f)
+   #     for row in data:
+    #        print(row)
+
+MainMenu()
+
+
 
 
 
