@@ -7,9 +7,7 @@ import sys
 import os.path
 import copy
 
-
 fileoutput = []
-
 
 #Displays the Main Menu
 def MainMenu():
@@ -28,20 +26,28 @@ def MainMenu():
     if option == "1":
         print("Read and load maze from file")
         Read()
+        
     elif option == "2":
         print("View Maze")
-        viewMaze()
+        trace = viewMaze(fileoutput)
+        print(trace)
+        
     elif option == "3":
         print("Play maze game")
+        
     elif option == "4":
         print("Configure current maze")
+        
     elif option == "0":
         print("Exiting Maze...")
         exit
+        
     else:
         print("Invalid Option. Try Again")
         MainMenu()
-    
+
+#######################################################################################
+
 def Read():
     datafile = input("Enter the name of the data file: ")
     try:
@@ -61,26 +67,24 @@ def Read():
         (print)
         Read()
 
-MainMenu()
+#######################################################################################
 
-def viewMaze():
-    if 1 not in option_list or exist == False: #parameters set so that option 2 cannot run if maze is not loaded or if file does not exist to prevent the code from breaking
-        print('Please load maze first.')
-        MainMenu()
-    continue
-else:
-    print()
-    print('Option [2] View Maze')
-    print('=========================================')
-    print()
-    for i in range(len(maze_list)): #prints maze_list line by line for user to read
-        print(maze_list[i])
- #   with open('maze1.csv','rt')as f:
-  #      data = csv.reader(f)
-   #     for row in data:
-    #        print(row)
+def viewMaze(game):
+    trace = ""
+    if (game != []):
+        for i in range(len(maze_list)): #prints maze_list line by line for user to read
+                print(maze_list[i])
+    else:
+        trace = "Please load your maze first"
+        
+    return trace
 
-MainMenu()
+
+if __name__ == '__main__':
+    MainMenu()
+
+
+    
 
 
 
