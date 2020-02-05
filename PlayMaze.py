@@ -48,24 +48,28 @@ def play_maze(maze):
                 else:
                     maze[row][col]='O'
                     maze[row-1][col]='A'
+                    print('UP successfully, press')
             elif movement=='S':
                 if maze[row+1][col]=='X':
                     print('Invalid Movement,try again!')
                 else:
                     maze[row][col]='O'
                     maze[row+1][col]='A'
+                    print('DOWN successfully, press')
             elif movement=='A':
                 if maze[row][col-1]=='X':
                     print('Invalid Movement,try again!')
                 else:
                     maze[row][col]='O'
                     maze[row][col-1]='A'
+                    print('LEFT successfully, press')
             elif movement=='D':
                 if maze[row][col+1]=='X':
                     print('Invalid Movement,try again!')
                 else:
                     maze[row][col]='O'
                     maze[row][col+1]='A'
+                    print('RIGHT successfully, press')
             else:   
                 print('Invalid Movement, try again!')
         except 	IndexError:
@@ -84,6 +88,3 @@ while True:
         play_maze(maze)
     else:
         print('Invalid option, try again')
-    
-
-               
