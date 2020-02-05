@@ -70,6 +70,10 @@ def play_maze(maze):
                     maze[row][col]='O'
                     maze[row][col+1]='A'
                     print('RIGHT successfully, press')
+            elif movement =='M':
+                print ('Return to Menu')
+                break
+                mainmenu()
             else:   
                 print('Invalid Movement, try again!')
         except 	IndexError:
@@ -88,3 +92,6 @@ while True:
         play_maze(maze)
     else:
         print('Invalid option, try again')
+    
+
+               
