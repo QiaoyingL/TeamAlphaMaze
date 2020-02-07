@@ -7,7 +7,9 @@ import sys
 import os.path
 import copy
 
-fileoutput = []
+maze = []
+start = []
+end = []
 
 #Displays the Main Menu
 def MainMenu():
@@ -25,15 +27,15 @@ def MainMenu():
 
     if option == "1":
         print("Read and load maze from file")
-        Read()
+        maze = Read()
+        start, end = Store(maze)
         
     elif option == "2":
         print("View Maze")
         #Read()
-        trace = viewMaze(fileoutput)
+        trace = viewMaze(maze)
         print(trace)
-        
-        
+              
     elif option == "3":
         print("Play maze game")
         
@@ -50,24 +52,48 @@ def MainMenu():
 
 #######################################################################################
 
+#Reads the input of the file
 def Read():
-    datafile = input("Enter the name of the data file: ")
+    file_name = input('Enter the name of the data file: ')
+    maze = []
+    num_lines = 0
+    
     try:
-        
-        with open(datafile, 'r') as csv_file:
-            csv_reader = csv.reader(csv_file)
-
-            row_count = sum(1 for row in csv_file)
-            print("Reading", datafile ,"...")
-            time.sleep(2)
-            print('Number of lines read: ', row_count)
-            fileoutput.append(datafile)
-            (print)
-            MainMenu()
+        with open(file_name, 'r') as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            for row in csv_reader:
+                maze.append(row)
+            num_lines = csv_reader.line_num
+        print('Number of lines read: {}'.format(num_lines))
+        print()
+        MainMenu()
     except FileNotFoundError:
-        print(datafile, "does not exist. Try again")
-        (print)
-        Read()
+        print('Invalid file type!')
+        print()
+        MainMenu()
+    return maze
+
+#Stores the input of the file in memory
+def Store(maze):
+    start_coordinate = []
+    end_coordinate = []
+    
+    for row_index, row in enumerate(maze):
+        for column_index, column in enumerate(row):
+            if (column == 'A'):
+                start_coordinate.append(column_index + 1)
+                start_coordinate.append(row_index + 1)
+                break
+            elif (column == 'B'):
+                end_coordinate.append(column_index + 1)
+                end_coordinate.append(row_index + 1)
+                break
+    if (len(start_coordinate) == 0 or len(end_coordinate) == 0):
+        print('Invalid maze!')
+        return -1, -1
+
+    return start_coordinate, end_coordinate
+
 
 #######################################################################################
 
@@ -75,8 +101,8 @@ def viewMaze(game):
     trace = ""
     #Read()
     if (game != []):
-        for i in range(len(fileoutput)): #prints maze_list line by line for user to read
-            print(fileoutput[i])
+        for i in range(len(maze)): #prints maze_list line by line for user to read
+            print(maze[i])
     else:
         trace = "Please load your maze first"
         
@@ -85,12 +111,3 @@ def viewMaze(game):
 
 if __name__ == '__main__':
     MainMenu()
-
-
-    
-
-
-
-
-
-
