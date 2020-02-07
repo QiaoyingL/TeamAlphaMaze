@@ -29,8 +29,10 @@ def MainMenu():
         
     elif option == "2":
         print("View Maze")
+        #Read()
         trace = viewMaze(fileoutput)
         print(trace)
+        
         
     elif option == "3":
         print("Play maze game")
@@ -71,9 +73,10 @@ def Read():
 
 def viewMaze(game):
     trace = ""
+    #Read()
     if (game != []):
-        for i in range(len(maze_list)): #prints maze_list line by line for user to read
-                print(maze_list[i])
+        for i in range(len(fileoutput)): #prints maze_list line by line for user to read
+            print(fileoutput[i])
     else:
         trace = "Please load your maze first"
         
