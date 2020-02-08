@@ -35,7 +35,11 @@ def check_option(option, end=''):
         return "Option 1 selected"
 
     elif option == "2":
-        viewMaze(maze)
+        print("Option 2")
+        print("View Maze")
+        print("========================================")
+        trace = viewMaze(maze)
+        print(trace)
     
     elif option == "3":
         play_maze(maze)
