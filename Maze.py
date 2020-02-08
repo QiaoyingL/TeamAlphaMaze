@@ -36,6 +36,9 @@ def check_option(option, end=''):
 
     elif option == "2":
         print("Option 2")
+        print("View Maze")
+        trace = viewMaze(maze)
+        print(trace)
     
     elif option == "3":
         print("Option 3")
@@ -62,7 +65,15 @@ def check_filename(filename):
         print("Error, file not found")
         return "Filename incorrect"
 
-
+def viewMaze(maze):
+    trace = ""
+    if 1 not in maze or exist == False:
+        for i in range(len(maze)): #prints maze_list line by line for user to read
+            print(maze[i])
+    else:
+        trace = "Please load your maze first"
+        
+    return trace
 
 if __name__ == "__main__":
     while run != False:
