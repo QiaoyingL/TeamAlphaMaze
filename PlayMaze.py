@@ -44,28 +44,28 @@ def play_maze(maze):
             movement = movement.upper()
             if movement=='W':
                 if maze[row-1][col]=='X':
-                    print('Invalid Movement,try again!')
+                    print('Sorry, Wall Ahead. Please try another path')
                 else:
                     maze[row][col]='O'
                     maze[row-1][col]='A'
                     print('UP successfully, press')
             elif movement=='S':
                 if maze[row+1][col]=='X':
-                    print('Invalid Movement,try again!')
+                    print('Sorry, Wall Ahead. Please try another path')
                 else:
                     maze[row][col]='O'
                     maze[row+1][col]='A'
                     print('DOWN successfully, press')
             elif movement=='A':
                 if maze[row][col-1]=='X':
-                    print('Invalid Movement,try again!')
+                    print('Sorry, Wall Ahead. Please try another path')
                 else:
                     maze[row][col]='O'
                     maze[row][col-1]='A'
                     print('LEFT successfully, press')
             elif movement=='D':
                 if maze[row][col+1]=='X':
-                    print('Invalid Movement,try again!')
+                    print('Sorry, Wall Ahead. Please try another path')
                 else:
                     maze[row][col]='O'
                     maze[row][col+1]='A'
