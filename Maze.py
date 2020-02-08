@@ -8,105 +8,63 @@ import os.path
 import copy
 
 maze = []
-start = []
-end = []
+menu = ("Read and load maze from file", "View maze", "Play maze game", "Configure current maze")
+configuration_menu = ["Create Wall", "Create Passageway", "Create Start Point", "Create End Point"]
+run = True
 
-#Displays the Main Menu
-def MainMenu():
-    print("MAIN MENU")
-    print("=========")
-    print("[1] Read and load maze from file")
-    print("[2] View Maze")
-    print("[3] Play maze game")
-    print("[4] Configure current maze")
-    print()
-    print("[0] Exit Maze")
-    print()
-    option = input("Enter your option: ")
-    print()
+#Display menu function
+def display_menu(check):
+    if check == True:
+        print('\n=========\nMAIN MENU \n=========')
+        for i, item in enumerate(menu,1):
+            print([i],'',item)
+        print()
+        print('[0]  Exit Maze')
+        print('')
+        return "Displaying Menu"
+    else:
+        return "Invalid menu"
 
+def check_option(option, end=''):
     if option == "1":
-        print("Read and load maze from file")
-        maze = Read()
-        start, end = Store(maze)
-        
+        if end=="break":
+            return "Option 1 selected"
+        maze.clear()
+        file = input("Enter the name of the data file: ")
+        check_filename(file)
+        return "Option 1 selected"
+
     elif option == "2":
-        print("View Maze")
-        trace = viewMaze(maze)
-        print(trace)
-              
+        print("Option 2")
+    
     elif option == "3":
-        print("Play maze game")
-        
+        print("Option 3")
+    
     elif option == "4":
-        print("Configure current maze")
-        
-    elif option == "0":
-        print("Exiting Maze...")
-        exit
-        
+        print("Option 4")
+
     else:
-        print("Invalid Option. Try Again")
-        MainMenu()
+        print ("Invalid option")
+        return "Invalid Option"
 
-#######################################################################################
-
-#Reads the input of the file
-def Read():
-    file_name = input('Enter the name of the data file: ')
-    maze = []
-    num_lines = 0
-    
-    try:
-        with open(file_name, 'r') as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            for row in csv_reader:
-                maze.append(row)
-            num_lines = csv_reader.line_num
-        print('Number of lines read: {}'.format(num_lines))
-        print()
-        MainMenu()
-    except FileNotFoundError:
-        print('Invalid file type!')
-        print()
-        MainMenu()
-    return maze
-
-#Stores the input of the file in memory
-def Store(maze):
-    start_coordinate = []
-    end_coordinate = []
-    
-    for row_index, row in enumerate(maze):
-        for column_index, column in enumerate(row):
-            if (column == 'A'):
-                start_coordinate.append(column_index + 1)
-                start_coordinate.append(row_index + 1)
-                break
-            elif (column == 'B'):
-                end_coordinate.append(column_index + 1)
-                end_coordinate.append(row_index + 1)
-                break
-    if (len(start_coordinate) == 0 or len(end_coordinate) == 0):
-        print('Invalid maze!')
-        return -1, -1
-
-    return start_coordinate, end_coordinate
-
-#######################################################################################
-
-def viewMaze(game):
-    trace = ""
-    if 1 not in maze or exist == False:
-        for i in range(len(maze)): #prints maze_list line by line for user to read
-            print(maze[i])
-    else:
-        trace = "Please load your maze first"
-        
-    return trace
+# Function to check filename
+def check_filename(filename):
+    try :
+        f = open(filename)
+        csv_reader = csv.reader(f,delimiter=',')
+        line_count = 0
+        for row in csv_reader:
+            maze.append(row)
+            line_count += 1
+        print("Number of lines read: " + str(line_count))
+        return "Filename correct"
+    except IOError:
+        print("Error, file not found")
+        return "Filename incorrect"
 
 
-if __name__ == '__main__':
-    MainMenu()
 
-#######################################################################################
+if __name__ == "__main__":
+    while run != False:
+        display_menu(True)
+        run = check_option(input ("Enter your option: "))
