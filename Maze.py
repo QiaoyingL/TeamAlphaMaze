@@ -37,14 +37,14 @@ def check_option(option, end=''):
     elif option == "2":
         print("Option 2")
         print("View Maze")
-        print("========================================")
         trace = viewMaze(maze)
         print(trace)
     
     elif option == "3":
-        play_maze(maze)
+        print("Option 3")
     
     elif option == "4":
+        print("Option 4")
         config_menu()
 
     else:
@@ -66,8 +66,6 @@ def check_filename(filename):
         print("Error, file not found")
         return "Filename incorrect"
 
-####################################################################################
-
 def viewMaze(maze):
     trace = ""
     if 1 not in maze or exist == False:
@@ -78,71 +76,9 @@ def viewMaze(maze):
         
     return trace
 
-###################################################################################
 
-def play_maze(maze):
-    print('Option [3] Play maze game')
-    print('=================================')
-    
-    while True:
-        try:
-            for a in range(len(maze)):
-                for b in range(len(maze[a])):
-                    if maze[a][b]=='B':
-                        b_row=a
-                        b_col=b
-            for c in range(len(maze)):
-                for d in range(len(maze[c])):
-                    if maze[c][d]=='A':
-                        row = c
-                        col = d
-            for item in range(len(maze)):
-                print(maze[item])
-            print('Location of You(A) = (Row {}, Column {})'.format(row,col))
-            print('Location of End (B) = (Row {}, Column {})'.format(b_row,b_col))
-            movement=input("Press 'W' for UP, 'A' for LEFT, 'S' for DOWN, 'D' for RIGHT, 'M' for MAIN NENU': ")
-            movement = movement.upper()
-            if movement=='W':
-                if maze[row-1][col]=='X':
-                    print('Sorry, Wall Ahead. Please try another path')
-                else:
-                    maze[row][col]='O'
-                    maze[row-1][col]='A'
-                    print('UP successfully, press')
-            elif movement=='S':
-                if maze[row+1][col]=='X':
-                    print('Sorry, Wall Ahead. Please try another path')
-                else:
-                    maze[row][col]='O'
-                    maze[row+1][col]='A'
-                    print('DOWN successfully, press')
-            elif movement=='A':
-                if maze[row][col-1]=='X':
-                    print('Sorry, Wall Ahead. Please try another path')
-                else:
-                    maze[row][col]='O'
-                    maze[row][col-1]='A'
-                    print('LEFT successfully, press')
-            elif movement=='D':
-                if maze[row][col+1]=='X':
-                    print('Sorry, Wall Ahead. Please try another path')
-                else:
-                    maze[row][col]='O'
-                    maze[row][col+1]='A'
-                    print('RIGHT successfully, press')
-            elif movement =='M':
-                print ('Return to Menu')
-                break
-                display_menu()
-            else:   
-                print('Invalid Movement, try again!')
-        except 	IndexError:
-            print ('Oops! Out of Zone')
-            break
-            display_menu()
 
-#####################################################################################
-
+# function to configure current maze
 def config_menu():
 
     print("Configuration Menu")
@@ -170,7 +106,7 @@ def options():
         config_create_wall()
     elif config_options == 2:
         config_create_passageway()
-    elif config_options == 3:
+    elif config_opitons == 3:
         config_create_start()
     elif config_options == 4:
         config_create_end()
@@ -251,9 +187,9 @@ def config_create_end():
     else:
         print("Invalid input, please enter a valid input of either “B/M” or coordinate in the correct format")
 
-
-
+# all codes above this line        
 if __name__ == "__main__":
     while run != False:
         display_menu(True)
         run = check_option(input ("Enter your option: "))
+        
