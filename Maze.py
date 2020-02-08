@@ -32,7 +32,6 @@ def MainMenu():
         
     elif option == "2":
         print("View Maze")
-        #Read()
         trace = viewMaze(maze)
         print(trace)
               
@@ -94,13 +93,11 @@ def Store(maze):
 
     return start_coordinate, end_coordinate
 
-
 #######################################################################################
 
 def viewMaze(game):
     trace = ""
-    #Read()
-    if (game != []):
+    if 1 not in maze or exist == False:
         for i in range(len(maze)): #prints maze_list line by line for user to read
             print(maze[i])
     else:
@@ -111,3 +108,5 @@ def viewMaze(game):
 
 if __name__ == '__main__':
     MainMenu()
+
+#######################################################################################
